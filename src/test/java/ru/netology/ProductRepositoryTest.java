@@ -27,10 +27,6 @@ public class ProductRepositoryTest {
 
     @Test
     public void saveGetProduct() {
-//            ProductRepository repo = new ProductRepository();
-//            repo.save(product1);
-//            repo.save(product2);
-//            repo.save(product3);
 
         Product[] expected = {product1, product2, product3};
         Product[] actual = repo.getProducts();
@@ -40,10 +36,7 @@ public class ProductRepositoryTest {
 
     @Test
     public void saveGetProductBook() {
-//        ProductRepository repo = new ProductRepository();
-//        repo.save(product1);
-//        repo.save(product2);
-//        repo.save(product3);
+
         repo.save(book1);
 
         Product[] expected = {product1, product2, product3, book1};
@@ -54,10 +47,7 @@ public class ProductRepositoryTest {
 
     @Test
     public void saveGetProductBookSmartphone() {
-//        ProductRepository repo = new ProductRepository();
-//        repo.save(product1);
-//        repo.save(product2);
-//        repo.save(product3);
+
         repo.save(book1);
         repo.save(Smartphone1);
 
@@ -77,6 +67,7 @@ public class ProductRepositoryTest {
 
         Assertions.assertArrayEquals(expected, actual);
     }
+
     @Test
     public void deleteId() {
 
@@ -87,14 +78,17 @@ public class ProductRepositoryTest {
 
         Assertions.assertArrayEquals(expected, actual);
     }
+
     @Test
     public void deleteError() {
 
-        repo.removeById(3);
+//        repo.removeById(3);
+//
+//        Product[] expected = {product2, product3};
+//        Product[] actual = repo.getProducts();
 
-        Product[] expected = {product2, product3};
-        Product[] actual = repo.getProducts();
-
-        Assertions.assertArrayEquals(expected, actual);
+        Assertions.assertThrows(NotFoundException.class, () -> {
+            repo.removeById(14);
+        });
     }
 }
