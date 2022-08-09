@@ -77,4 +77,24 @@ public class ProductRepositoryTest {
 
         Assertions.assertArrayEquals(expected, actual);
     }
+    @Test
+    public void deleteId() {
+
+        repo.removeById(8);
+
+        Product[] expected = {product1, product2};
+        Product[] actual = repo.getProducts();
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+    @Test
+    public void deleteError() {
+
+        repo.removeById(3);
+
+        Product[] expected = {product2, product3};
+        Product[] actual = repo.getProducts();
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
 }
